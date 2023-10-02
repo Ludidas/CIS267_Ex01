@@ -90,6 +90,8 @@ public class PlayerMovement : MonoBehaviour
         {
             numJumps = 1;
         }
+
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -102,6 +104,17 @@ public class PlayerMovement : MonoBehaviour
             Destroy(collision.gameObject);
 
         }
+        else if(collision.gameObject.CompareTag("CoinCollectable"))
+        {
+            //get value of collectable
+            int collectableValue=collision.GetComponent<Collectable>().getCollectableValue();
+            //destroy the collectable
+            collision.GetComponent<Collectable>().destroyCollectable();
+            //add to player score
+            GetComponent<PlayerScore>().setPlayerScore(collectableValue);
+
+        }
+
     }
 
 
