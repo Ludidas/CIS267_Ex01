@@ -15,6 +15,9 @@ public class PlayerMovement : MonoBehaviour
     private int numJumps;
     private int maxNumJumps;
 
+    public GameObject gameManager;
+    private GameManager gm;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
 
         numJumps = 1;
         maxNumJumps=1;
+
+        gm = gameManager.AddComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -83,8 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
         if(collision.gameObject.CompareTag("OB"))
         {
-            //need to import sceneManagement
-            SceneManager.LoadScene("SampleScene");
+            gm.setGameOver(true);
         }
         else if (collision.gameObject.CompareTag("Grounded"))
         {
@@ -112,7 +116,6 @@ public class PlayerMovement : MonoBehaviour
             collision.GetComponent<Collectable>().destroyCollectable();
             //add to player score
             GetComponent<PlayerScore>().setPlayerScore(collectableValue);
-
         }
 
     }

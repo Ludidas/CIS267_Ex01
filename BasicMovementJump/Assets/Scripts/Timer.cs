@@ -8,11 +8,16 @@ public class Timer : MonoBehaviour
 {
     private float time;
     private TMP_Text guiTime;
+    //assigned via Unity editor
+    public GameObject gameManager;
+    private GameManager gm;
     // Start is called before the first frame update
     void Start()
     {
-        time = 20;
+        gm= gameManager.GetComponent<GameManager>();
+        time = 10;
         guiTime = GetComponent<TMP_Text>();
+        updateGuiTime();
     }
 
     // Update is called once per frame
@@ -28,7 +33,8 @@ public class Timer : MonoBehaviour
         updateGuiTime();
         if (timeUp())
         {
-            SceneManager.LoadScene("SampleScene");
+            gm.setGameOver(true);
+            updateGuiTime();
         }
     }
 
