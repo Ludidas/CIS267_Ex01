@@ -10,9 +10,11 @@ public class GameOverMenu : MonoBehaviour
     public GameObject gameOverMenu;
     private GameManager gm;
 
+
     
     void Start()
     {
+
         gm = gameManager.GetComponent<GameManager>();
     }
 
